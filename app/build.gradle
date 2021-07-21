@@ -39,11 +39,13 @@ android {
 
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 }
 
 dependencies {
 
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def lifecycle_version = "2.4.0-alpha02"
     def retrofit_version = "2.9.0"
     def hilt_version = "2.37"
