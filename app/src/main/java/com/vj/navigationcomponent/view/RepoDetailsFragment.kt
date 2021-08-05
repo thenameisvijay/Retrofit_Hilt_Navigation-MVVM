@@ -70,11 +70,11 @@ class RepoDetailsFragment : Fragment() {
                         mProgress.visibility = View.GONE
                         resource.data?.let { gitUsers ->
                             val userDetailsList: ArrayList<UserLabelValue> = arrayListOf()
-                            userDetailsList.add(UserLabelValue("Name: ", gitUsers.name))
-                            userDetailsList.add(UserLabelValue("Followers: ", gitUsers.followers.toString()))
-                            userDetailsList.add(UserLabelValue("Following: ", gitUsers.following.toString()))
-                            userDetailsList.add(UserLabelValue("Company: ", gitUsers.company))
-                            userDetailsList.add(UserLabelValue("Location: ", gitUsers.location))
+                            userDetailsList.add(UserLabelValue("Name: ", gitUsers.name ?: "-"))
+                            userDetailsList.add(UserLabelValue("Followers: ", gitUsers.followers.toString() ?: "-"))
+                            userDetailsList.add(UserLabelValue("Following: ", gitUsers.following.toString() ?: "-"))
+                            userDetailsList.add(UserLabelValue("Company: ", gitUsers.company ?: "-"))
+                            userDetailsList.add(UserLabelValue("Location: ", gitUsers.location ?: "-"))
                             setToAdapter(userDetailsList)
                         }
                     }

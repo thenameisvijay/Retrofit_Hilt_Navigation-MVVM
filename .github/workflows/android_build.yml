@@ -2,29 +2,35 @@
 name: Android Build
 ## Actions that will be executed when you push code currently none
 on:
+  # Triggers the workflow on push or pull request events but only for the master branch
   push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
-## 2
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  ## 3
-  unit_tests:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
 
-      - name: Unit tests
-        run: ./gradlew test
-  ## 4
-  android_tests:
-    runs-on: macos-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Instrumentation Tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          script: ./gradlew connectedAndroidTest
+      - name: Check Lint
+        run: sudo ./gradlew lintDebug
+
+      #      - name: Run tests
+      #        run: sudo ./gradlew test
+
+      - name: Build with Gradle
+        run: sudo ./gradlew build
+
 #on:
 #  # Trigger the workflow on push or pull request,
 #  # but only for the main branch
